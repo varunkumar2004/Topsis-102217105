@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 DESCRIPTION = 'Technique for Order Preference by Similarity to Ideal Solution(TOPSIS) Package'
 
 # Setting up
