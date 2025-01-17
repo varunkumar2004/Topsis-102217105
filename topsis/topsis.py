@@ -50,6 +50,7 @@
 
 import numpy as np
 import argparse
+import os
 import pandas as pd
 
 def topsis(data, weights, impacts):
@@ -88,6 +89,21 @@ def topsis(data, weights, impacts):
 
     return rank
 
+def excel_to_csv(excel_file, csv_output):
+    """
+    Convert Excel file to CSV.
+    
+    Parameters:
+    - excel_file: The input Excel file (.xlsx or .xls).
+    - csv_output: The path to the output CSV file.
+    
+    Returns:
+    - The CSV file path.
+    """
+    df = pd.read_excel(excel_file)
+    df.to_csv(csv_output, index=False)
+    return csv_output
+
 def main():
     parser = argparse.ArgumentParser(description="TOPSIS method for decision making")
     parser.add_argument("input_file", help="CSV file containing the decision matrix")
@@ -97,8 +113,15 @@ def main():
 
     args = parser.parse_args()
 
-    # Read the input file
-    data = pd.read_csv(args.input_file)
+    input_file = args.input_file
+
+    if input_file.endswith(('.xlsx', '.xls')):
+        # Convert Excel to CSV
+        csv_file = os.path.splitext(input_file)[0] + ".csv"
+        input_file = excel_to_csv(args.input_file, csv_file)
+
+    # Read the input CSV file
+    data = pd.read_csv(input_file)
 
     # Convert weights and impacts
     weights = list(map(float, args.weights.split(',')))

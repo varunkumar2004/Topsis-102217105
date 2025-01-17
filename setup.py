@@ -12,7 +12,7 @@ setup(
     description=DESCRIPTION,
     # long_description_content_type="text/markdown",
     packages=find_packages(),
-    install_requires=['numpy', 'pandas'],
+    install_requires=['numpy', 'pandas', 'openpyxl'],
     keywords=['python', 'topsis', 'multi-criteria decision-making', 'mcdm', 'ranking'],
     entry_points={
         'console_scripts': [
