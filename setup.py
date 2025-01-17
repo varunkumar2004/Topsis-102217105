@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.1'
+VERSION = '0.1.0'
 DESCRIPTION = 'Technique for Order Preference by Similarity to Ideal Solution(TOPSIS) Package'
 
 # Setting up
 setup(
-    name="topsis-102217105",
+    name="topsis-varun-102217105",
     version=VERSION,
     author="Varun Kumar",
     author_email="varunkumar2004.vk@gmail.com",
@@ -19,12 +19,10 @@ setup(
             'topsis=topsis.topsis:main'
         ]
     },
-    # classifiers=[
-    #     "Development Status :: 1 - Planning",
-    #     "Intended Audience :: Developers",
-    #     "Programming Language :: Python :: 3",
-    #     "Operating System :: Unix",
-    #     "Operating System :: MacOS :: MacOS X",
-    #     "Operating System :: Microsoft :: Windows",
-    # ]
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+    ],
+    python_requires='>=3.6',
 )
