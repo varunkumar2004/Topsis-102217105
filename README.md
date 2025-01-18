@@ -26,7 +26,7 @@ The script accepts command-line arguments to specify the input file, weights, im
 
 ### Command
 ```bash
-python topsis.py <input_file> <weights> <impacts> <output_file>
+topsis <input_file> <weights> <impacts> <output_file>
 ```
 
 ### Parameters
@@ -45,7 +45,7 @@ python topsis.py <input_file> <weights> <impacts> <output_file>
 
 #### Command:
 ```bash
-python topsis.py data.csv "0.3,0.4,0.3" "+,+,-" output.csv
+topsis <input_file> <weights> <impacts> <output_file>
 ```
 
 #### Output File (`output.csv`):

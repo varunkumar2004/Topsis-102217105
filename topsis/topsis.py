@@ -16,24 +16,18 @@ def topsis(data, weights, impacts):
     - Ranks of the alternatives.
     """
 
-    # Convert input data to numpy array for easy matrix manipulation
     data = np.array(data, dtype=float)
 
-    # Step 1: Normalize the decision matrix
     norm_data = data / np.sqrt((data ** 2).sum(axis=0))
 
-    # Step 2: Apply weights to normalized data
     weighted_data = norm_data * weights
-
-    # Step 3: Calculate ideal best and ideal worst
+    
     ideal_best = np.where(impacts == '+', weighted_data.max(axis=0), weighted_data.min(axis=0))
     ideal_worst = np.where(impacts == '+', weighted_data.min(axis=0), weighted_data.max(axis=0))
 
-    # Step 4: Calculate the distance from the ideal best and worst
     dist_best = np.sqrt(((weighted_data - ideal_best) ** 2).sum(axis=1))
     dist_worst = np.sqrt(((weighted_data - ideal_worst) ** 2).sum(axis=1))
 
-    # Step 5: Calculate the performance score and rank alternatives
     performance_score = dist_worst / (dist_best + dist_worst)
     rank = performance_score.argsort()[::-1] + 1
 
@@ -66,21 +60,16 @@ def main():
     input_file = args.input_file
 
     if input_file.endswith(('.xlsx', '.xls')):
-        # Convert Excel to CSV
         csv_file = os.path.splitext(input_file)[0] + ".csv"
         input_file = excel_to_csv(args.input_file, csv_file)
-
-    # Read the input CSV file
+        
     data = pd.read_csv(input_file)
-
-    # Convert weights and impacts
+    
     weights = list(map(float, args.weights.split(',')))
     impacts = np.array(args.impacts.split(','))
-
-    # Perform TOPSIS
+    
     rank = topsis(data.iloc[:, 1:].values, weights, impacts)
-
-    # Save results to the output file
+    
     data['Rank'] = rank
     data.to_csv(args.output_file, index=False)
     print("Results saved to", args.output_file)

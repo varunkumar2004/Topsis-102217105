@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.1.1'
+VERSION = '0.1.3'
 DESCRIPTION = 'Technique for Order Preference by Similarity to Ideal Solution(TOPSIS) Package'
 
 # Setting up
 setup(
-    name="topsis-varun-102217105",
+    name="topsis_varun_102217105",
     version=VERSION,
     author="Varun Kumar",
     author_email="varunkumar2004.vk@gmail.com",
